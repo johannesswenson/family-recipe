@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, Inter } from "next/font/google";
 import "./globals.css";
+import { Header } from "./components/layout/header";
 
 const display = DM_Serif_Display({
   variable: "--font-display-family",
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="sv">
       <body className={`${display.variable} ${sans.variable}`}>
+        <Header />
         {children}
       </body>
     </html>
