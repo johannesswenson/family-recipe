@@ -12,7 +12,7 @@ export function Header() {
                     <Link href="/" className="text-muted transition-colors hover:text-foreground">
                         Hem
                     </Link>
-                    <Link href="/recipies" className="text-muted transition-colors hover:text-foreground">
+                    <Link href="/recipes" className="text-muted transition-colors hover:text-foreground">
                         Recept
                     </Link>
                     <Link href="/recipies/new" className="rounded-full bg-accent px-5 py-2.5 font-medium text-background transition-opacity hover:opacity-90">
