@@ -7,4 +7,6 @@ export type Recipe = {
     category: string;
     prepTime: number;
     servings: number;
+    ingredients: string[];
+    instructions: string[];
 };

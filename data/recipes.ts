@@ -10,16 +10,16 @@ export const recipes: Recipe[] = [
     category: "Middag",
     prepTime: 60,
     servings: 4,
-
+    
     ingredients: [
       "500 g nötfärs",
       "1 gul lök",
       "2 vitlöksklyftor",
-      "400g krossade tomater",
+      "400 g krossade tomater",
       "2 msk tomatpuré",
       "9 lasagneplattor",
-      "5 dl bechamelsås",
-      "150g riven ost",
+      "5 dl béchamelsås",
+      "150 g riven ost",
     ],
 
     instructions: [
