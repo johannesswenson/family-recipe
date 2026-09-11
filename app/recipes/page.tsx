@@ -1,7 +1,13 @@
 import { RecipeGrid } from "@/components/recipes/recipe-grid";
-import { recipes } from "@/data/recipes";
+import { prisma } from "@/lib/prisma";
 
-export default function RecipesPage() {
+export default async function RecipesPage() {
+    const recipes = await prisma.recipe.findMany({
+        orderBy: {
+            createdAt: "asc",
+        },
+    });
+
     return (
         <main className="min-h-screen bg-background">
             <div className="mx-auto max-w-7xl px-6 py-16">

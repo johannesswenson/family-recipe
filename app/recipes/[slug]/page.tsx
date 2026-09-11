@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { recipes } from "@/data/recipes";
+import { prisma } from "@/lib/prisma";
 
 type RecipePageProps = {
     params: Promise<{
@@ -12,7 +12,11 @@ type RecipePageProps = {
 export default async function RecipePage({ params }:RecipePageProps) {
     const { slug } = await params;
 
-    const recipe = recipes.find((recipe) => recipe.slug === slug);
+    const recipe = await prisma.recipe.findUnique({
+        where: {
+            slug,
+        },
+    });
 
     if (!recipe) {
         notFound();
