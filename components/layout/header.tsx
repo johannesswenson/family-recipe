@@ -15,7 +15,7 @@ export function Header() {
                     <Link href="/recipes" className="text-muted transition-colors hover:text-foreground">
                         Recept
                     </Link>
-                    <Link href="/recipies/new" className="rounded-full bg-accent px-5 py-2.5 font-medium text-background transition-opacity hover:opacity-90">
+                    <Link href="/recipes/new" className="rounded-full bg-accent px-5 py-2.5 font-medium text-background transition-opacity hover:opacity-90">
                         Lägg till recept
                     </Link>
                 </nav>

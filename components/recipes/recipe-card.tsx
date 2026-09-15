@@ -12,7 +12,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
             <article>
                 <div className="relative aspect-4/3 overflow-hidden rounded-2xl bg-surface">
                     <Image
-                        src={recipe.image}
+                        src={recipe.image || "/images/recipe-placeholder.png"}
                         alt={recipe.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
