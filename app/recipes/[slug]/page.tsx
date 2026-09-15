@@ -36,7 +36,7 @@ export default async function RecipePage({ params }:RecipePageProps) {
                 <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:gap-16">
                     <div className="relative aspect-4/3 overflow-hidden rounded-3xl bg-surface">
                         <Image 
-                            src={recipe.image}
+                            src={recipe.image || "/images/recipe-placeholder.png"}
                             alt={recipe.title}
                             fill
                             className="object-cover"

@@ -1,3 +1,5 @@
+import { createRecipe } from "./actions";
+
 export default function NewRecipePage() {
     return (
         <main className="min-h-screen bg-background">
@@ -16,7 +18,7 @@ export default function NewRecipePage() {
                     </p>
                 </div>
 
-                <form className="mt-12 space-y-8">
+                <form action={createRecipe} className="mt-12 space-y-8">
                     <div>
                         <label
                             htmlFor="title"
