@@ -1,6 +1,12 @@
+"use client"
+
+import { useActionState } from "react";
 import { createRecipe } from "./actions";
 
+
 export default function NewRecipePage() {
+    const [state, formAction] = useActionState(createRecipe, {});
+
     return (
         <main className="min-h-screen bg-background">
             <div className="mx-auto max-w-3xl px-6 py-18">
@@ -18,7 +24,16 @@ export default function NewRecipePage() {
                     </p>
                 </div>
 
-                <form action={createRecipe} className="mt-12 space-y-8">
+                {state.error && (
+                    <div 
+                        role="alert"
+                        className="rounded-xl border border-red-900/50 bg-red-950/30 px-4 py-3 font-sans text-sm text-red-300"
+                    >
+                        {state.error}
+                    </div>
+                )}
+
+                <form action={formAction} className="mt-12 space-y-8">
                     <div>
                         <label
                             htmlFor="title"
