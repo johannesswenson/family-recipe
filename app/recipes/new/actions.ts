@@ -3,35 +3,69 @@
 import { redirect } from "next/navigation"
 import { prisma } from "@/lib/prisma";
 
-export async function createRecipe(formData: FormData) {
-   const title = formData.get("title") as string;
-   const description = formData.get("description") as string;
-   const category = formData.get("category") as string;
+export type CreateRecipeState = {
+    error?: string;
+};
+
+export async function createRecipe(
+    _previousState: CreateRecipeState,
+    formData: FormData,
+):  Promise<CreateRecipeState> {
+   const title = String(formData.get("title") ?? "").trim();
+   const description = String(formData.get("description") ?? "").trim();
+   const category = String(formData.get("category") ?? "").trim();
    const prepTime = Number(formData.get("prepTime"));
    const servings = Number(formData.get("servings"));
-   const ingredients = String(formData.get("ingredients"))
+
+   const ingredients = String(formData.get("ingredients") ?? "")
     .split("\n")
     .map((ingredient) => ingredient.trim())
     .filter(Boolean);
-   const instructions = String(formData.get("instructions"))
+
+   const instructions = String(formData.get("instructions") ?? "")
     .split("\n")
     .map((instruction) => instruction.trim())
     .filter(Boolean);
 
-   console.log({
-    title,
-    description,
-    category,
-    prepTime,
-    servings,
-    ingredients,
-    instructions,
-   });
+    if (!title) {
+        return { error: "Du måste ange ett namn på receptet." };
+    }
+
+    if (!description) {
+        return { error: "Du måste ange en beskrivning." };
+    }
+
+    if (!category) {
+        return { error: "Du måste ange en kategori." };
+    }
+
+    if (!Number.isInteger(prepTime) || prepTime <= 0) {
+        return { error: "Tillagningstiden måste vara ett positivt heltal." };
+    }
+
+    if (!Number.isInteger(servings) || servings <= 0) {
+        return { error: "Antal portioner måste vara ett positivt heltal." };
+    }
+
+    if (ingredients.length === 0) {
+        return { error: "Du måste ange minst en ingrediens." };
+    }
+
+    if (instructions.length === 0) {
+        return { error: "Du måste ange minst en instruktion." };
+    }
+
+    const slug = title
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
 
    const recipe = await prisma.recipe.create({
     data: {
         title,
-        slug: title.toLowerCase().replaceAll(" ", "-"),
+        slug,
         description,
         image: "",
         category,
