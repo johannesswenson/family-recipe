@@ -62,19 +62,38 @@ export async function createRecipe(
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)/g, "");
 
-   const recipe = await prisma.recipe.create({
-    data: {
-        title,
-        slug,
-        description,
-        image: "",
-        category,
-        prepTime,
-        servings,
-        ingredients,
-        instructions,
-    },
-   });
+    const existingRecipe = await prisma.recipe.findUnique({
+        where: {
+            slug,
+        },
+    });
 
-   redirect(`/recipes/${recipe.slug}`);
+    if (existingRecipe) {
+        return {
+            error: "Det finns redan ett recept med det namnet.",
+        };
+    }
+
+   let recipe;
+
+    try {
+        recipe = await prisma.recipe.create({
+            data: {
+                title,
+                slug,
+                description,
+                image: "",
+                category,
+                prepTime,
+                servings,
+                ingredients,
+                instructions,
+            },
+           });
+    } catch {
+        return {
+            error: "Något gick fel när receptet skulle sparas. Försök igen.",
+        };
+    }
+    redirect(`/recipes/${recipe.slug}`);
 }
