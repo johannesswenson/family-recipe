@@ -5,6 +5,15 @@ import { prisma } from "@/lib/prisma";
 
 export type CreateRecipeState = {
     error?: string;
+    values?: {
+        title: string;
+        description: string;
+        category: string;
+        prepTime: string;
+        servings: string;
+        ingredients: string[];
+        instructions: string[];
+    };
 };
 
 export async function createRecipe(
@@ -17,6 +26,9 @@ export async function createRecipe(
    const prepTime = Number(formData.get("prepTime"));
    const servings = Number(formData.get("servings"));
 
+   const prepTimeValue = String(formData.get("prepTime") ?? "");
+   const servingsValue = String(formData.get("servings") ?? "");
+
    const ingredients = String(formData.get("ingredients") ?? "")
     .split("\n")
     .map((ingredient) => ingredient.trim())
@@ -27,32 +39,63 @@ export async function createRecipe(
     .map((instruction) => instruction.trim())
     .filter(Boolean);
 
+    const values = {
+        title,
+        description,
+        category,
+        prepTime: prepTimeValue,
+        servings: servingsValue,
+        ingredients,
+        instructions,
+    };
+
     if (!title) {
-        return { error: "Du måste ange ett namn på receptet." };
+        return {
+            error: "Du måste ange ett namn på receptet.", 
+            values,
+        };
     }
 
     if (!description) {
-        return { error: "Du måste ange en beskrivning." };
+        return {
+            error: "Du måste ange en beskrivning.",
+            values,
+        };
     }
 
     if (!category) {
-        return { error: "Du måste ange en kategori." };
+        return {
+            error: "Du måste ange en kategori.",
+            values,
+        };
     }
 
     if (!Number.isInteger(prepTime) || prepTime <= 0) {
-        return { error: "Tillagningstiden måste vara ett positivt heltal." };
+        return {
+            error: "Tillagningstiden måste vara ett positivt heltal.",
+            values,
+        };
     }
 
     if (!Number.isInteger(servings) || servings <= 0) {
-        return { error: "Antal portioner måste vara ett positivt heltal." };
+        return {
+            error: "Antal portioner måste vara ett positivt heltal.",
+            values,
+        };
     }
 
     if (ingredients.length === 0) {
-        return { error: "Du måste ange minst en ingrediens." };
+        return {
+            error: "Du måste ange minst en ingrediens.",
+            values,
+        };
     }
 
     if (instructions.length === 0) {
-        return { error: "Du måste ange minst en instruktion." };
+        return {
+            error: "Du måste ange minst en instruktion.",
+            values,
+        };
     }
 
     const slug = title
@@ -71,6 +114,7 @@ export async function createRecipe(
     if (existingRecipe) {
         return {
             error: "Det finns redan ett recept med det namnet.",
+            values,
         };
     }
 
@@ -93,6 +137,7 @@ export async function createRecipe(
     } catch {
         return {
             error: "Något gick fel när receptet skulle sparas. Försök igen.",
+            values,
         };
     }
     redirect(`/recipes/${recipe.slug}`);
