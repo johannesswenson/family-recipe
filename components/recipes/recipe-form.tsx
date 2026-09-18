@@ -4,7 +4,17 @@ import { useActionState, useState } from "react";
 import { createRecipe } from "@/app/recipes/new/actions";
 
 export function RecipeForm() {
-   const [state, formAction] = useActionState(createRecipe, {});
+   const [state, formAction] = useActionState(createRecipe, {
+    values: {
+        title: "",
+        description: "",
+        category: "",
+        prepTime: "",
+        servings: "",
+        ingredients: [""],
+        instructions: [""],
+    },
+   });
    const [ingredients, setIngredients] = useState([""]);
    const [instructions, setInstructions] = useState([""]);
 
@@ -31,6 +41,7 @@ export function RecipeForm() {
             <input
                 id="title"
                 name="title"
+                defaultValue={state.values?.title ?? ""}
                 type="text"
                 placeholder="T.ex. Kyckling i röd olja"
                 className="mt-2 w-full rounded-xl border border-border bg-surface px-4 py-3 font-sans text-foreground outline-none placeholder:text-muted focus:border-accent"
@@ -48,6 +59,7 @@ export function RecipeForm() {
             <textarea 
                 id="description"
                 name="description"
+                defaultValue={state.values?.description ?? ""}
                 rows={4}
                 placeholder="En kort beskrivning av receptet..."
                 className="mt-2 w-full resize-none rounded-xl border border-border bg-surface px-4 py-3 font-sans text-foreground outline-none placeholder:text-muted focus:border-accent"
@@ -68,6 +80,7 @@ export function RecipeForm() {
                     id="category"
                     name="category"
                     type="text"
+                    defaultValue={state.values?.category ?? ""}
                     placeholder="T.ex. Middag"
                     className="mt-2 w-full rounded-xl border border-border bg-surface px-4 py-3 font-sans text-foreground outline-none placeholder:text-muted focus:border-accent"
                 />
@@ -85,6 +98,7 @@ export function RecipeForm() {
                     id="prepTime"
                     name="prepTime"
                     type="number"
+                    defaultValue={state.values?.prepTime ?? ""}
                     min={1}
                     placeholder="30"
                     className="mt-2 w-full rounded-xl border border-border bg-surface px-4 py-3 font-sans text-foreground outline-none placeholder:text-muted focus:border-accent"
@@ -105,6 +119,7 @@ export function RecipeForm() {
                 id="servings"
                 name="servings"
                 type="number"
+                defaultValue={state.values?.servings ?? ""}
                 min={1}
                 placeholder="4"
                 className="mt-2 w-full rounded-xl border border-border bg-surface px-4 py-3 font-sans text-foreground outline-none placeholder:text-muted focus:border-accent"
