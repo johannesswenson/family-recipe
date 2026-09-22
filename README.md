@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Family Recipe
 
-## Getting Started
+Family Recipe is a full-stack recipe application built as a personal development project.
 
-First, run the development server:
+The goal of the project is to explore modern web development with Next.js and TypeScript while building something practical that can be used to collect and share family recipes.
+
+## Features
+
+* Create and view recipes
+* Add ingredients and cooking instructions dynamically
+* Server-side form validation
+* User-friendly validation and error handling
+* Persistent recipe data using Prisma and a relational database
+* Automatic recipe slugs for readable URLs
+
+## Tech stack
+
+* **Next.js** – React framework and application structure
+* **TypeScript** – Type-safe application code
+* **Prisma** – Database ORM
+* **PostgreSQL** – Relational database
+* **React** – Interactive form components
+* **Git & GitHub** – Version control and development workflow
+
+## What I'm exploring
+
+This project is also a way for me to learn and practice full-stack development.
+
+Some of the areas I'm currently working with include:
+
+* Server Actions in Next.js
+* Form handling and validation
+* Client and server component boundaries
+* Database modelling and persistence
+* Error handling
+* Dynamic form fields
+* Accessible and user-friendly form interfaces
+* Git branches, pull requests and code review workflows
+
+## Screenshots
+
+*Screenshots will be added here.*
+
+## Getting started
+
+### Prerequisites
+
+* Node.js
+* PostgreSQL
+
+### Installation
+
+Clone the repository and install dependencies:
+
+```bash
+git clone <repository-url>
+cd family-recipe
+npm install
+```
+
+Set up the required environment variables in `.env` and run the database migrations:
+
+```bash
+npx prisma migrate dev
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will then be available at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project status
 
-## Learn More
+Family Recipe is an ongoing personal project.
 
-To learn more about Next.js, take a look at the following resources:
+The core recipe creation flow is currently being developed, with additional features and UX improvements planned.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Future plans
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Some ideas for future development include:
 
-## Deploy on Vercel
+* Recipe editing and deletion
+* Image uploads
+* Recipe categories and filtering
+* Improved recipe browsing
+* Authentication and user accounts
+* Sharing recipes with family members
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built as a learning project with Next.js, TypeScript and Prisma.
