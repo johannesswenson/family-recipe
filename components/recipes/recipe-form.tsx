@@ -46,6 +46,13 @@ export function RecipeForm() {
                 placeholder="T.ex. Kyckling i röd olja"
                 className="mt-2 w-full rounded-xl border border-border bg-surface px-4 py-3 font-sans text-foreground outline-none placeholder:text-muted focus:border-accent"
             />
+
+            {state.fieldErrors?.title && (
+                <p className="mt-2 font-sans text-sm text-red-400">
+                    {state.fieldErrors.title}
+                </p>
+            )}
+
         </div>
 
         <div>
@@ -64,6 +71,13 @@ export function RecipeForm() {
                 placeholder="En kort beskrivning av receptet..."
                 className="mt-2 w-full resize-none rounded-xl border border-border bg-surface px-4 py-3 font-sans text-foreground outline-none placeholder:text-muted focus:border-accent"
             />
+
+            {state.fieldErrors?.description && (
+                <p className="mt-2 font-sans text-sm text-red-400">
+                    {state.fieldErrors.description}
+                </p>
+            )}
+
         </div>
 
         <div className="grid gap-8 sm:grid-cols-2">
@@ -84,6 +98,13 @@ export function RecipeForm() {
                     placeholder="T.ex. Middag"
                     className="mt-2 w-full rounded-xl border border-border bg-surface px-4 py-3 font-sans text-foreground outline-none placeholder:text-muted focus:border-accent"
                 />
+
+                {state.fieldErrors?.category && (
+                    <p className="mt-2 font-sans text-sm text-red-400">
+                        {state.fieldErrors.category}
+                    </p>
+                )}
+
             </div>
 
             <div>
@@ -103,6 +124,13 @@ export function RecipeForm() {
                     placeholder="30"
                     className="mt-2 w-full rounded-xl border border-border bg-surface px-4 py-3 font-sans text-foreground outline-none placeholder:text-muted focus:border-accent"
                 />
+
+                {state.fieldErrors?.prepTime && (
+                    <p className="mt-2 font-sans text-sm text-red-400">
+                        {state.fieldErrors.prepTime}
+                    </p>
+            )}
+
             </div>
         </div>
 
@@ -124,6 +152,12 @@ export function RecipeForm() {
                 placeholder="4"
                 className="mt-2 w-full rounded-xl border border-border bg-surface px-4 py-3 font-sans text-foreground outline-none placeholder:text-muted focus:border-accent"
             />
+
+            {state.fieldErrors?.servings && (
+                <p className="mt-2 font-sans text-sm text-red-400">
+                    {state.fieldErrors.servings}
+                </p>
+            )}
         </div>
 
         <div className="border border-border pt-8">

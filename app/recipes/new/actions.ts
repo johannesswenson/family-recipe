@@ -5,6 +5,15 @@ import { prisma } from "@/lib/prisma";
 
 export type CreateRecipeState = {
     error?: string;
+    fieldErrors?: {
+        title?: string;
+        description?: string;
+        category?: string;
+        prepTime?: string;
+        servings?: string;
+        ingredients?: string;
+        instructions?: string;
+    };
     values?: {
         title: string;
         description: string;
@@ -51,49 +60,63 @@ export async function createRecipe(
 
     if (!title) {
         return {
-            error: "Du måste ange ett namn på receptet.", 
+            fieldErrors: {
+                title: "Du måste ange ett namn på receptet",
+            },
             values,
         };
     }
 
     if (!description) {
         return {
-            error: "Du måste ange en beskrivning.",
+            fieldErrors: {
+                description: "Du måste ange en beskrivning"
+            },
             values,
         };
     }
 
     if (!category) {
         return {
-            error: "Du måste ange en kategori.",
+            fieldErrors: {
+                category: "Du måste ange en kategori"
+            },
             values,
         };
     }
 
     if (!Number.isInteger(prepTime) || prepTime <= 0) {
         return {
-            error: "Tillagningstiden måste vara ett positivt heltal.",
+            fieldErrors: {
+                prepTime: "Tillagningstiden måste vara ett positivt heltal.",
+            },
             values,
         };
     }
 
     if (!Number.isInteger(servings) || servings <= 0) {
         return {
-            error: "Antal portioner måste vara ett positivt heltal.",
+            fieldErrors: {
+                servings: "Antal portioner måste vara ett positivt heltal.",
+            },
             values,
         };
     }
 
     if (ingredients.length === 0) {
         return {
-            error: "Du måste ange minst en ingrediens.",
+            fieldErrors: {
+                ingredients: "Du måste ange minst en ingrediens.",
+            },
             values,
         };
     }
 
     if (instructions.length === 0) {
         return {
-            error: "Du måste ange minst en instruktion.",
+            fieldErrors: {
+                instructions: "Du måste ange minst en instruktion.",
+            },
             values,
         };
     }
