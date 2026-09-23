@@ -45,7 +45,7 @@ Some of the areas I'm currently working with include:
 
 ### Prerequisites
 
-* Node.js
+* Node.js 22
 * PostgreSQL
 
 ### Installation
