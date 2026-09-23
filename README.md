@@ -58,10 +58,11 @@ cd family-recipe
 npm install
 ```
 
-Set up the required environment variables in `.env` and run the database migrations:
+Set up the required environment variables in `.env`, generate the Prisma client, and apply the database migrations:
 
 ```bash
-npx prisma migrate dev
+npx prisma generate
+npx prisma migrate deploy
 ```
 
 Start the development server:
