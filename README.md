@@ -1,8 +1,18 @@
 # Family Recipe
 
-Family Recipe is a full-stack recipe application built as a personal development project.
+Family Recipe is a full-stack recipe application built as a personal development project. This project is under development.
 
 The goal of the project is to explore modern web development with Next.js and TypeScript while building something practical that can be used to collect and share family recipes.
+
+Why do I do this?
+
+Because I want to learn new things?
+
+Because trying to read a recipe from a screenshot on your phone can be tedious when you're hungry?
+
+Because sometimes when you have small children you find little pockets of time that you feel you have to fill with something productive?
+
+As usual, the truth can probably be found somewhere inbetween the tangible.
 
 ## Features
 
